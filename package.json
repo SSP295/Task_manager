@@ -1,6 +1,7 @@
 {
   "name": "task-manager",
   "version": "1.0.0",
+  "description": "Task Manager App for CRUD operations",
   "main": "src/backend/server.js",
   "scripts": {
     "start": "node src/backend/server.js"
