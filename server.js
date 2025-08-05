@@ -7,35 +7,47 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
-let tasks = [];
-const USER = { username: 'admin', password: 'password123' };
-
-// API Login
+// Allow any login for demo
 app.post('/api/login', (req, res) => {
   const { username, password } = req.body;
-  if (username === USER.username && password === USER.password) {
+  if (username && password) {
     return res.json({ success: true });
   }
-  return res.status(401).json({ success: false, message: 'Invalid credentials' });
+  return res.status(400).json({ success: false, message: 'Invalid credentials' });
 });
 
-// CRUD APIs
+// In-memory tasks
+let tasks = [];
+
+// Create Task
 app.post('/api/tasks', (req, res) => {
   const { title, description, priority, isCompleted } = req.body;
-  if (!title || !priority) return res.status(400).json({ error: 'Title and Priority are required' });
-  const newTask = { id: uuidv4(), title, description, priority, isCompleted: !!isCompleted, createdAt: new Date() };
+  if (!title || !priority) {
+    return res.status(400).json({ error: 'Title and Priority are required' });
+  }
+  const newTask = {
+    id: uuidv4(),
+    title,
+    description: description || '',
+    priority,
+    isCompleted: !!isCompleted,
+    createdAt: new Date()
+  };
   tasks.push(newTask);
   res.json(newTask);
 });
 
+// Get Tasks
 app.get('/api/tasks', (req, res) => {
   res.json({ tasks });
 });
 
+// Delete Task
 app.delete('/api/tasks/:id', (req, res) => {
   const { id } = req.params;
-  tasks = tasks.filter(t => t.id !== id);
+  tasks = tasks.filter(task => task.id !== id);
   res.json({ success: true });
 });
 
+// Export for Vercel
 module.exports = app;
