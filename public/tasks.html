@@ -23,12 +23,13 @@
       </label>
       <button type="submit">Add Task</button>
     </form>
+
     <div id="taskList"></div>
     <a href="/" class="back-link">← Logout</a>
   </div>
 
-  <!-- ✅ Proper script block -->
   <script>
+    // Load tasks from localStorage or initialize empty
     let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 
     function saveTasks() {
@@ -42,7 +43,13 @@
         const div = document.createElement('div');
         div.classList.add('task-item');
         div.innerHTML = `
-          <strong>${task.title}</strong> (${task.priority}) - ${task.isCompleted ? '✔ Done' : '❌ Pending'}
+          <div class="task-info">
+            <strong>${task.title}</strong>
+            <div class="task-meta">
+              <span class="priority ${task.priority.toLowerCase()}">${task.priority}</span>
+              <span class="status">${task.isCompleted ? '✔ Completed' : '❌ Pending'}</span>
+            </div>
+          </div>
           <button onclick="deleteTask('${task.id}')">Delete</button>
         `;
         taskList.appendChild(div);
@@ -57,10 +64,15 @@
 
     document.getElementById('taskForm').addEventListener('submit', (e) => {
       e.preventDefault();
-      const title = document.getElementById('title').value;
-      const description = document.getElementById('description').value;
+      const title = document.getElementById('title').value.trim();
+      const description = document.getElementById('description').value.trim();
       const priority = document.getElementById('priority').value;
       const isCompleted = document.getElementById('isCompleted').checked;
+
+      if (!title || !priority) {
+        alert('Please enter a title and select priority.');
+        return;
+      }
 
       const newTask = {
         id: Date.now().toString(),
@@ -76,6 +88,7 @@
       loadTasks();
     });
 
+    // Initial load
     loadTasks();
   </script>
 </body>

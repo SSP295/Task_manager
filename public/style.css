@@ -1,13 +1,22 @@
+/* --- LOGIN PAGE STYLES --- */
 body {
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  background-size: cover;
+  min-height: 100vh;
+}
+
+/* Centered layout for login page */
+.login-container {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: linear-gradient(135deg, #6a11cb, #2575fc);
-  font-family: 'Segoe UI', sans-serif;
 }
 
-.login-container {
+.login-container form {
   background: #fff;
   padding: 30px;
   border-radius: 12px;
@@ -50,4 +59,144 @@ button:hover {
   color: #ff4b4b;
   font-size: 14px;
   margin-top: 12px;
+}
+
+/* --- TASK PAGE STYLES --- */
+.task-container {
+  max-width: 600px;
+  margin: 40px auto;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  color: #333;
+}
+
+.task-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.task-container form input,
+.task-container form textarea,
+.task-container form select {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+.task-container form button {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(90deg, #6a11cb, #2575fc);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.task-container form button:hover {
+  background: linear-gradient(90deg, #2575fc, #6a11cb);
+}
+
+/* Task List Styling */
+#taskList {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.task-item {
+  background: #fff;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.task-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+}
+
+.task-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.task-info strong {
+  font-size: 18px;
+  color: #333;
+}
+
+.task-meta {
+  font-size: 14px;
+  color: #666;
+  margin-top: 4px;
+}
+
+.priority {
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: bold;
+  color: #fff;
+  margin-left: 8px;
+}
+
+.priority.low {
+  background-color: #28a745; /* Green */
+}
+
+.priority.medium {
+  background-color: #ff9800; /* Orange */
+}
+
+.priority.high {
+  background-color: #f44336; /* Red */
+}
+
+.status {
+  margin-left: 8px;
+  font-weight: 500;
+  color: #555;
+}
+
+.task-item button {
+  padding: 8px 14px;
+  background: linear-gradient(90deg, #ff416c, #ff4b2b);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.3s ease;
+}
+
+.task-item button:hover {
+  background: linear-gradient(90deg, #ff4b2b, #ff416c);
+}
+
+/* Logout link */
+.back-link {
+  display: block;
+  text-align: center;
+  margin-top: 15px;
+  color: #2575fc;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.back-link:hover {
+  text-decoration: underline;
 }
